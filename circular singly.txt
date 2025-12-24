@@ -1,0 +1,156 @@
+package datastructure;
+
+class CircularList {
+
+    Node head;
+
+    class Node {
+        int data;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    public void insertAtBeg(int data) {
+        Node newNode = new Node(data);
+
+        if (head == null) {
+            head = newNode;
+            newNode.next = head;
+        } else {
+            Node temp = head;
+            while (temp.next != head) {
+                temp = temp.next;
+            }
+            newNode.next = head;
+            temp.next = newNode;
+            head = newNode;
+        }
+    }
+
+    public void insertAtEnd(int data) {
+        Node newNode = new Node(data);
+
+        if (head == null) {
+            head = newNode;
+            newNode.next = head;
+        } else {
+            Node temp = head;
+            while (temp.next != head) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+            newNode.next = head;
+        }
+    }
+
+    public void insertAtMid(int data, int pos) {
+        if (head == null || pos <= 1) {
+            insertAtBeg(data);
+            return;
+        }
+
+        Node newNode = new Node(data);
+        Node temp = head;
+
+        for (int i = 1; i < pos - 1 && temp.next != head; i++) {
+            temp = temp.next;
+        }
+
+        newNode.next = temp.next;
+        temp.next = newNode;
+    }
+
+    public void deleteAtBeg() {
+        if (head == null) return;
+
+        if (head.next == head) {
+            head = null;
+        } else {
+            Node temp = head;
+            while (temp.next != head) {
+                temp = temp.next;
+            }
+            head = head.next;
+            temp.next = head;
+        }
+    }
+
+    public void deleteAtEnd() {
+        if (head == null) return;
+
+        if (head.next == head) {
+            head = null;
+        } else {
+            Node temp = head;
+            while (temp.next.next != head) {
+                temp = temp.next;
+            }
+            temp.next = head;
+        }
+    }
+
+    public void deleteAtMid(int pos) {
+        if (head == null || pos <= 1) {
+            deleteAtBeg();
+            return;
+        }
+
+        Node temp = head;
+        for (int i = 1; i < pos - 1 && temp.next.next != head; i++) {
+            temp = temp.next;
+        }
+        temp.next = temp.next.next;
+    }
+
+    public void search(int key) {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        Node temp = head;
+        do {
+            if (temp.data == key) {
+                System.out.println("Element Found");
+                return;
+            }
+            temp = temp.next;
+        } while (temp != head);
+
+        System.out.println("Element Not Found");
+    }
+
+    public void display() {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        Node temp = head;
+        do {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        } while (temp != head);
+
+        System.out.println("(back to head)");
+    }
+
+    // ✅ MAIN METHOD (FIX)
+    public static void main(String[] args) {
+
+        CircularList s = new CircularList();
+
+        s.insertAtBeg(70);
+        s.insertAtBeg(60);
+        s.insertAtEnd(80);
+        s.insertAtMid(65, 3);
+
+        s.deleteAtBeg();
+        s.search(65);
+        s.display();
+    }
+}
