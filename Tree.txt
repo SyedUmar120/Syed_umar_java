@@ -1,0 +1,56 @@
+package datastructure;
+
+public class tree {
+	Node root;
+	static class Node{
+		int data;
+		Node left,right;
+		Node(int data){
+			this.data=data;
+			left=null;
+			right=null;
+		}
+		
+	}
+	void preorder(Node root) {
+		if(root!=null) {
+			System.out.print(root.data+" ");
+			preorder(root.left);
+			preorder(root.right);
+		}
+
+	}
+	void inorder(Node root) {
+		if(root!=null) {
+		inorder(root.left);
+		System.out.print(root.data + " ");
+		inorder(root.right);
+	}
+
+	}
+	void postorder(Node root) {
+		if(root!=null) {
+			postorder(root.left);
+			postorder(root.right);
+			System.out.print(root.data+" ");
+		}
+
+	}
+	public static void main(String[] args) {
+		tree t =new tree();
+		t.root=new Node(10);
+		t.root.left= new Node(20);
+		t.root.right=new Node(30);
+		
+		System.out.print("preorder:");
+		t.preorder(t.root);
+		System.out.println();
+		System.out.print("Inorder:");
+		t.inorder(t.root);
+		System.out.println();
+		System.out.print("postorder:");
+		t.postorder(t.root);
+		System.out.println();
+		
+		}
+}
