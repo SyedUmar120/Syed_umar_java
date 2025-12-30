@@ -1,0 +1,26 @@
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        int v=4;
+        ArrayList<ArrayList<Integer>> a=new ArrayList<>();
+        for(int i=0;i<v;i++){
+            a.add(new ArrayList<>());
+        }
+        a.get(0).add(3);
+        a.get(0).add(3);
+        a.get(1).add(2);
+        a.get(1).add(4);
+        a.get(2).add(6);
+        a.get(2).add(5);
+        a.get(3).add(7);
+        a.get(3).add(8);
+        for(int i=0;i<v;i++){
+        
+        System.out.print(i+" ");
+        for(int b:a.get(i)){
+            System.out.print(b);
+        }
+        System.out.println();
+    }
+    }
+}
